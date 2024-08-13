@@ -1,14 +1,16 @@
 import { IconButton, Typography} from "@mui/material";
-import {LoginWrapper, TextFieldStyled, InputStyled, OutlinedButton} from "./StyledLoginPage";
-import {LoginButton} from "../../components/Header/StyledHeader";
+import {LoginWrapper, TextFieldStyled, InputStyled, OutlinedButton, LoginButton} from "./StyledLoginPage";
 import {Visibility, VisibilityOff} from "@mui/icons-material";
 import { Controller, useForm } from 'react-hook-form';
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {login, setShowLogin, userModule} from "./userAccess/userDucks";
+import {login, setShowLogin, userModule} from "./userDucks";
+import {fieldToProps} from "../../_helpers/formHooks";
+import { useNavigate } from 'react-router-dom';
 
 export default function LoginPage() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const form = useForm({
         mode: 'all',
@@ -18,11 +20,14 @@ export default function LoginPage() {
     const showLogin = useSelector((state) => state[userModule].showLogin);
 
     const onSubmit = () => {
-        dispatch(login({ form }));
+        dispatch(login({ form, navigate }));
+        dispatch(setShowLogin(false));
+
     };
     const handleCloseButton = () => {
         dispatch(setShowLogin(false));
     };
+
 
     return showLogin && <LoginWrapper>
         <div className = "column">
@@ -34,10 +39,11 @@ export default function LoginPage() {
                     control={form.control}
                     name={'username'}
                     defaultValue={''}
-                    render={() => (
+                    render={(fieldProps) => (
                         <TextFieldStyled
                             placeholder='Email'
                             fullWidth
+                            {...fieldToProps(fieldProps)}
                             InputProps={{
                                 autoComplete: 'new-username',
                                 form: {autoComplete: 'off'},
@@ -52,12 +58,13 @@ export default function LoginPage() {
                     control={form.control}
                     name={'password'}
                     defaultValue={''}
-                    render={() => (
+                    render={(fieldProps) => (
                         <TextFieldStyled
-                            type={'password'}
+                            type={showPass ? 'text' : 'password'}
                             placeholder='Password'
                             margin="normal"
                             fullWidth
+                            {...fieldToProps(fieldProps)}
                             InputProps={{
                                 autoComplete: 'new-password',
                                 endAdornment: (
@@ -72,8 +79,8 @@ export default function LoginPage() {
                     )}
                 />
                 <div style = {{display: 'flex', justifyContent: 'end', alignItems: 'center'}}>
-                    <LoginButton onClick = {onSubmit}>Login</LoginButton>
                     <OutlinedButton onClick = {handleCloseButton}>Cancel</OutlinedButton>
+                    <LoginButton type="submit" onClick = {onSubmit}>Login</LoginButton>
                 </div>
 
             </form>

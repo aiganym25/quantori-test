@@ -1,25 +1,26 @@
 import {
-    StyledNav,
-    StyleHeaderMenu,
-    StyleHeaderMenuItem,
     StyledHeaderLogo,
     StyledHeaderWrapper,
     StyledHeader,
     StyledMenuIcon,
-    MenuPhone, LoginButton
+    MenuPhone, LoginButton, Content
 } from "./StyledHeader";
 import { Link } from 'react-router-dom';
 import {Avatar, Divider, Menu, MenuItem} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import React, {useState} from "react";
-import { useDispatch } from 'react-redux';
-import {setShowLogin} from "../../pages/LoginPage/userAccess/userDucks";
+import {useDispatch, useSelector} from 'react-redux';
+import {setShowLogin} from "../../pages/LoginPage/userDucks";
+import Button from "@mui/material/Button";
+import {headerModule, setHeaderContent} from "./headerDucks";
+import { useNavigate } from 'react-router-dom';
 
 export default function Header() {
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const dispatch = useDispatch();
-
+    const chosenHeaderContent = useSelector((state) => state[headerModule].chosenHeaderContent);
+    const navigate = useNavigate();
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -33,6 +34,11 @@ export default function Header() {
         dispatch(setShowLogin(true));
     };
 
+    const changeHeaderContent = (path) => {
+        dispatch(setHeaderContent(path));
+        navigate(path);
+    }
+
     return <StyledHeader>
             <div className="container">
                 <StyledHeaderWrapper>
@@ -43,21 +49,45 @@ export default function Header() {
                                     <Avatar src="/broken-image.jpg" sx={{backgroundColor: '#2d772d'}}/>
                                 </Link>
                             </StyledHeaderLogo>
-                            <StyledNav>
-                                <StyleHeaderMenu>
-                                    <StyleHeaderMenuItem>
-                                        <a href="/#home">Home</a>
-                                    </StyleHeaderMenuItem>
-                                    <StyleHeaderMenuItem>
-                                        <a href="/#contact">Contact</a>
-                                    </StyleHeaderMenuItem>
-                                    <StyleHeaderMenuItem>
-                                        <a href="/#about">About</a>
-                                    </StyleHeaderMenuItem>
-                                </StyleHeaderMenu>
-                            </StyledNav>
+                            <Content>
+                                <div className="choice">
+                                    <Button
+                                        className="choice-item-1"
+                                        component="a"
+                                        style={{
+                                            backgroundColor: chosenHeaderContent === 'home' ? '#2d772d' : '#f1f2f5',
+                                            color: chosenHeaderContent === 'home' ? "#fff" : '#2d772d',
+                                        }}
+                                        onClick={()=> changeHeaderContent('home')}
+                                    >
+                                        Home
+                                    </Button>
+                                    <Button
+                                        className="choice-item-2"
+                                        component="label"
+                                        style={{
+                                            backgroundColor:  chosenHeaderContent === 'contact' ? '#2d772d' :'#f1f2f5',
+                                            color: chosenHeaderContent === 'contact' ? "#fff" : '#2d772d',
+                                        }}
+                                        onClick={()=> changeHeaderContent('contact')}
+                                    >
+                                        Contact
+                                    </Button>
+                                    <Button
+                                        className="choice-item-3"
+                                        component="label"
+                                        style={{
+                                            backgroundColor:  chosenHeaderContent === 'about' ? '#2d772d' :'#f1f2f5',
+                                            color: chosenHeaderContent === 'about' ? "#fff" : '#2d772d',
+                                        }}
+                                        onClick={()=> changeHeaderContent('about')}
+                                    >
+                                        About
+                                    </Button>
+                                </div>
+                            </Content>
                             <StyledMenuIcon>
-                                <MenuIcon onClick={handleClick} style={{color: '#31bfe1', fontSize: 35}}/>
+                                <MenuIcon onClick={handleClick} style={{color: '#2d772d', fontSize: 35}}/>
                             </StyledMenuIcon>
                         </div>
                         <LoginButton onClick={handleLoginButtonClick}>Login</LoginButton>
@@ -97,15 +127,15 @@ export default function Header() {
                     anchorOrigin={{horizontal: 'right', vertical: 'top'}}
                 >
                     <MenuItem>
-                        <a href="/#home">Home</a>
+                        <a href="/home">Home</a>
                     </MenuItem>
                     <Divider/>
                     <MenuItem>
-                        <a href="/#contact">Contact</a>
+                        <a href="/contact">Contact</a>
                     </MenuItem>
                     <Divider/>
                     <MenuItem>
-                        <a href="/#about">About</a>
+                        <a href="/about">About</a>
                     </MenuItem>
                     <Divider/>
                     <MenuItem>

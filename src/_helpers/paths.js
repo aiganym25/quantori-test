@@ -1,5 +1,9 @@
 const paths = {
-    MainPage: '/',
+    MainPage: '/main',
+    HomePage: '/',
+    HomeSection: '/home',
+    AboutSection: '/about',
+    ContactSection: '/contact',
 };
 
 export default paths;

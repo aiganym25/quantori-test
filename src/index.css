@@ -3,11 +3,7 @@ body {
   margin: 0;
   padding: 0;
   font-size: 14px;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: 'Roboto', serif;
 }
 
 .container {
@@ -21,37 +17,6 @@ code {
   margin: auto;
 }
 
-@media (min-width: 576px) {
-  .container {
-    max-width: 540px;
-  }
-}
-
-@media (min-width: 768px) {
-  .container {
-    max-width: 720px;
-  }
-}
-
-@media (min-width: 992px) {
-  .container {
-    max-width: 960px;
-  }
-}
-
-@media (max-width: 1200px) {
-  .container {
-    max-width: 1060px;
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-}
-
-@media (min-width: 1300px) {
-  .container {
-    max-width: 1200px;
-  }
-}
 .center{
   display: flex;
   justify-content: center;
@@ -60,15 +25,15 @@ code {
   min-height: calc(100vh - 70px);
 }
 .home {
-  background-color: red;
+  background-color: darkolivegreen;
 }
 
 .contact{
-  background-color: green;
+  background-color: lightpink;
 }
 
 .about {
-  background-color: blue;
+  background-color: rebeccapurple;
 }
 
 a {

@@ -7,6 +7,7 @@ export const LoginWrapper = styled(Card)({
     left: "50%",
     transform: "translate(-50%, -50%)",
     padding: "32px 16px",
+    zIndex: 9999999
 });
 
 export const TextFieldStyled = styled(TextField)(() => ({
@@ -44,11 +45,25 @@ export const OutlinedButton = styled.button`
     padding: 10px 20px;
     cursor: pointer;
     transition: background-color 0.3s;
-    margin-left: 15px;
+    margin-right: 15px;
     
-    @media screen and (max-width: 700px) {
-        display: none;
+    &:hover {
+        background-color: rgba(45, 119, 45, 0.67);
     }
+    &:focus {
+        outline: none;
+    }
+`;
+export const LoginButton = styled.button`
+    background-color: #2d772d;
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 16px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    
     &:hover {
         background-color: rgba(45, 119, 45, 0.67);
     }

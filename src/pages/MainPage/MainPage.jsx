@@ -1,14 +1,10 @@
-import {StyledMain} from "./StyledMainPage";
-import HomeSection from "./sections/HomeSection/HomeSection";
-import AboutSection from "./sections/AboutSection/AboutSection";
-import ContactSection from "./sections/ContactSection/ContactSection";
-import LoginPage from "../LoginPage/LoginPage";
+import {MainPageWrapper} from "./StyledMainPage";
+import {Typography} from "@mui/material";
 
 export default function MainPage() {
-    return <StyledMain>
-        <HomeSection/>
-        <AboutSection/>
-        <ContactSection/>
-        <LoginPage/>
-    </StyledMain>
+    return <MainPageWrapper>
+        <Typography variant = "h4">Congratulations!</Typography>
+        <Typography variant = "h4">You have successfully logged in</Typography>
+
+    </MainPageWrapper>
 }

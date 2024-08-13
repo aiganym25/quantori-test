@@ -3,19 +3,59 @@ import styled from 'styled-components';
 export const StyledHeader = styled.header`
     position: fixed;
     top: 0;
+    left: 0;
     width: 100%;
     max-width: 100%;
-    z-index: 9999999;
+    z-index: 999999;
     background-color: #cbcaca;
     display: flex;
-    justify-content: space-between; // Space out children to push items to the edges
-    align-items: center; // Vertically center items
-    padding: 0 20px; // Add some padding to the sides
+    justify-content: space-between; 
+    align-items: center;
+`;
+
+export const Content = styled.div`
+  .content-header {
+    text-align: center;
+    margin-bottom: 20px;
+  } 
+  display: block;
+  @media screen and (max-width: 700px) {
+    display: none;
+  }
+  .choice {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px;
+    border: 1px solid #2d772d;
+    border-radius: 20px;
+  }
+  .choice-item-1 {
+    text-align: center;
+    border-radius: 20px 0 0 20px;
+    padding: 10px;
+    font-size: 16px;
+    text-transform: capitalize;
+  } 
+  .choice-item-2 {
+    text-align: center;
+    border-radius: 0;
+    padding: 10px;
+    font-size: 16px;
+    text-transform: capitalize;
+  }
+  .choice-item-3 {
+      text-align: center;
+      border-radius: 0 20px 20px 0;
+      padding: 10px;
+      font-size: 16px;
+      text-transform: capitalize;
+    }
 `;
 
 export const StyledHeaderLogo = styled.div`
     width: 92px;
     margin-right: 36px;
+    margin-left: 30px;
     img {
         width: 100%;
         height: 100%;
@@ -29,12 +69,11 @@ export const StyledHeaderWrapper = styled.div`
   justify-content: space-between;
   padding-top: 10px;
   position: relative;
-  z-index: 9999;
   padding-bottom: 10px;
 `;
 export const StyledNav = styled.nav`
   display: block;
-  @media screen and (max-width: 999px) {
+  @media screen and (max-width: 700px) {
     display: none;
   }
 `;
@@ -44,7 +83,7 @@ export const StyleHeaderMenu = styled.ul`
   margin: 0;
   padding: 0;
   list-style: none;
-  @media screen and (max-width: 999px) {
+  @media screen and (max-width: 700px) {
     display: none;
   }
 `;
@@ -99,7 +138,9 @@ export const LoginButton = styled.button`
     padding: 10px 20px;
     cursor: pointer;
     transition: background-color 0.3s;
-    
+    margin-right: 30px;
+
+
     @media screen and (max-width: 700px) {
         display: none;
     }

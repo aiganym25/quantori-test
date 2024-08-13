@@ -1,12 +1,11 @@
-import styled from 'styled-components';
+import {styled} from 'styled-components';
 
-export const StyledPage= styled.section`
-    padding-top: 70px;
-    background-color: #f9f9f9;
-    //height: calc(100vh - 70px);
-    
-`;
-
-export const StyledMain = styled.main`
-  background-color: #fff;
-`;
+export const MainPageWrapper = styled.div`
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: darkgrey;
+    padding: 2rem;
+`

@@ -1,4 +1,4 @@
-import {StyledPage} from "../../StyledMainPage";
+import {StyledPage} from "../../StyledHomePage";
 
 export default function AboutSection() {
     return <StyledPage id="about">
