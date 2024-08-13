@@ -1,10 +1,10 @@
-import {StyledPage} from "./StyledContactPage";
+import {StyledPage} from "../../StyledMainPage";
 
-export default function ContactPage() {
+export default function ContactSection() {
     return <StyledPage id="contact">
         <div className="container">
-            <div className ="center">
-                Contact
+            <div className ="center contact">
+                You can contact us via email
             </div>
         </div>
     </StyledPage>

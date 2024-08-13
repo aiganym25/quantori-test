@@ -1,9 +1,9 @@
-import {StyledPage} from "./StyledHomePage";
+import {StyledPage} from "../../StyledMainPage";
 
-export default function HomePage() {
+export default function HomeSection() {
     return <StyledPage id="home">
         <div className="container">
-            <div className = 'center'>
+            <div className ="center home">
                 Home
             </div>
         </div>
