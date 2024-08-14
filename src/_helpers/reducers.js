@@ -1,4 +1,4 @@
-import userReducer, {userModule} from "../pages/LoginPage/userDucks";
+import userReducer, {userModule} from "../components/LoginComponent/userDucks";
 import headerReducer, {headerModule} from "../components/Header/headerDucks";
 
 const reducers = {

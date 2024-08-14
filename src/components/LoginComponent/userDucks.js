@@ -1,4 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
+import axios from 'axios';
 
 export const userModule = "user";
 const SET_SHOW_LOGIN = `${userModule}/SHOW_LOGIN`;
@@ -25,35 +26,43 @@ export const setShowLogin = (res) => async (dispatch) =>
         payload: res
     });
 
-export const setUserInfo = (res) => async (dispatch) =>
+export const setUserInfo = (res) => async (dispatch) => {
     dispatch({
         type: SET_USER,
         payload: res
     });
+    localStorage.setItem('token', res.token);
+    localStorage.setItem('refreshToken', res.refreshToken);
+}
+
+export const clearUserInfo = () => async (dispatch) => {
+    dispatch({
+        type: SET_USER,
+        payload: null
+    });
+    localStorage.removeItem('token');
+    localStorage.removeItem('refreshToken');
+}
 
 
-export const login =  ({ form, navigate }) => async (dispatch) => {
+export const login = ({ form, navigate }) => async (dispatch) => {
     let values = form.getValues();
-    await fetch('https://dummyjson.com/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
+
+    try {
+        const response = await axios.post('https://dummyjson.com/auth/login', {
             username: values.username,
             password: values.password,
             expiresInMins: 30,
-        })
-    }).then(async (response) => {
-        if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.message || 'Something went wrong!');
-        }
+        }, {
+            headers: { 'Content-Type': 'application/json' }
+        });
+
+        dispatch(setUserInfo(response.data));
         navigate('/main');
-        dispatch(setUserInfo(response.json));
-        return response.json();
-    }).catch((error) => {
+    } catch (error) {
         form.setError('username', {
             type: "custom",
-            message: error.message,
-        })
-    });
+            message: error.response ? error.response.data.message : error.message,
+        });
+    }
 };

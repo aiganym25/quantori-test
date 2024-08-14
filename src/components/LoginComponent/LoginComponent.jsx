@@ -1,5 +1,5 @@
 import { IconButton, Typography} from "@mui/material";
-import {LoginWrapper, TextFieldStyled, InputStyled, OutlinedButton, LoginButton} from "./StyledLoginPage";
+import {LoginWrapper, TextFieldStyled, InputStyled, OutlinedButton, LoginButton} from "./StyledLoginComponent";
 import {Visibility, VisibilityOff} from "@mui/icons-material";
 import { Controller, useForm } from 'react-hook-form';
 import {useState} from "react";
@@ -8,7 +8,7 @@ import {login, setShowLogin, userModule} from "./userDucks";
 import {fieldToProps} from "../../_helpers/formHooks";
 import { useNavigate } from 'react-router-dom';
 
-export default function LoginPage() {
+export default function LoginComponent() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 

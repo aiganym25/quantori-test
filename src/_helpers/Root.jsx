@@ -1,20 +1,21 @@
 import Header from "../components/Header/Header";
-import LoginPage from "../pages/LoginPage/LoginPage";
+import LoginComponent from "../components/LoginComponent/LoginComponent";
 import {Route, Routes} from "react-router-dom";
 import routerProps from "./routerProps";
 import Page404 from "../pages/Page404/Page404";
 import Footer from "../components/Footer/Footer";
 import React from "react";
 import {useSelector} from "react-redux";
-import {userModule} from "../pages/LoginPage/userDucks";
+import {userModule} from "../components/LoginComponent/userDucks";
 import {Box} from "@mui/material";
+import MainHeader from "../components/MainHeader/MainHeader";
 
 export default function Root() {
     const user = useSelector((state) => state[userModule].user);
 
     return user === null ? <div>
         <Header />
-        <LoginPage />
+        <LoginComponent />
         <Routes>
             <Route {...routerProps.homePage} />
             <Route {...routerProps.homeSection} />
@@ -28,9 +29,10 @@ export default function Root() {
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        aligItems: "center",
+        alignItems: "center",
         backgroundColor: "darkgrey"
     }}>
+        <MainHeader/>
         <Routes>
             <Route {...routerProps.mainPage} />
             <Route path="*" element={<Page404 />} />

@@ -10,7 +10,7 @@ import {Avatar, Divider, Menu, MenuItem} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import React, {useState} from "react";
 import {useDispatch, useSelector} from 'react-redux';
-import {setShowLogin} from "../../pages/LoginPage/userDucks";
+import {setShowLogin} from "../LoginComponent/userDucks";
 import Button from "@mui/material/Button";
 import {headerModule, setHeaderContent} from "./headerDucks";
 import { useNavigate } from 'react-router-dom';
