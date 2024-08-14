@@ -21,7 +21,6 @@ export default function LoginComponent() {
 
     const onSubmit = () => {
         dispatch(login({ form, navigate }));
-        dispatch(setShowLogin(false));
 
     };
     const handleCloseButton = () => {
